@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PulseForge — Smart Fitness Equipment</title>
+  <meta name="description" content="Train smarter with PulseForge premium smart fitness equipment. AI-powered gear for the modern athlete.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2322C55E'/><text y='.9em' font-size='72' x='12'>⚡</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ANNOUNCEMENT BAR
+═══════════════════════════════════════════════════════════ -->
+<div class="ann-bar" id="annBar">
+  <i class="fa-solid fa-bolt"></i>
+  <span>Flash Sale — Use <strong>PULSE30</strong> for 30% OFF your first order &nbsp;·&nbsp; Free shipping on orders above ₹999</span>
+  <i class="fa-solid fa-truck-fast"></i>
+  <button class="ann-close" onclick="this.parentElement.style.display='none'" aria-label="Close">✕</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════════════════ -->
+<nav class="navbar" id="navbar" role="navigation">
+  <div class="nav-inner">
+
+    <a class="nav-logo" href="#" onclick="return showPage('home')">
+      <div class="logo-mark"><i class="fa-solid fa-bolt"></i></div>
+      <span class="logo-text">Pulse<span>Forge</span></span>
+    </a>
+
+    <div class="nav-links">
+      <a class="nav-link active" href="#" data-page="home"    onclick="return showPage('home')">Home</a>
+      <a class="nav-link"        href="#" data-page="shop"    onclick="return showPage('shop')">Shop</a>
+      <a class="nav-link"        href="#" data-page="about"   onclick="return showPage('about')">About</a>
+      <a class="nav-link"        href="#" data-page="contact" onclick="return showPage('contact')">Contact</a>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <div class="nav-search" role="search">
+        <i class="fa-solid fa-magnifying-glass nav-search-icon"></i>
+        <input type="text" placeholder="Search products…" id="searchInput" oninput="handleSearch(this.value)" aria-label="Search products">
+      </div>
+
+      <button class="btn-icon btn" title="Wishlist" aria-label="Wishlist">
+        <i class="fa-regular fa-heart"></i>
+      </button>
+
+      <button class="cart-btn" id="cartTrigger" onclick="toggleCart()" aria-label="Open cart">
+        <i class="fa-solid fa-bag-shopping"></i>
+        Cart
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+
+      <button class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav" role="navigation">
+  <a class="nav-link" href="#" onclick="showPage('home');closeMobile()"><i class="fa-solid fa-house" style="width:18px"></i> Home</a>
+  <a class="nav-link" href="#" onclick="showPage('shop');closeMobile()"><i class="fa-solid fa-store" style="width:18px"></i> Shop</a>
+  <a class="nav-link" href="#" onclick="showPage('about');closeMobile()"><i class="fa-solid fa-circle-info" style="width:18px"></i> About</a>
+  <a class="nav-link" href="#" onclick="showPage('contact');closeMobile()"><i class="fa-solid fa-envelope" style="width:18px"></i> Contact</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     ████  HOME PAGE
+═══════════════════════════════════════════════════════════ -->
+<div id="page-home" class="page active page-enter">
+
+  <!-- ── Hero ──────────────────────────────────────────────── -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-bg">
+      <div class="hero-bg-gradient"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-noise"></div>
+    </div>
+
+    <div class="hero-inner">
+      <!-- Left: copy -->
+      <div class="hero-text">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          New Collection 2025
+        </div>
+
+        <h1 class="hero-h1">
+          Train<br>
+          <span class="line-accent">Smarter.</span><br>
+          <span class="line-italic">Perform</span><br>
+          Stronger.
+        </h1>
+
+        <p class="hero-sub">
+          Next-generation smart fitness equipment engineered for elite performance.
+          AI-powered tracking, clinical-grade resistance, and a lifetime warranty on every product.
+        </p>
+
+        <div class="hero-ctas">
+          <button class="btn btn-primary btn-lg btn-ripple" onclick="showPage('shop')">
+            <i class="fa-solid fa-bolt"></i> Shop Now
+          </button>
+          <button class="btn btn-outline btn-lg" onclick="scrollTo('featured')">
+            <i class="fa-solid fa-play"></i> Explore Products
+          </button>
+        </div>
+
+        <div class="hero-social-proof">
+          <div class="proof-item">
+            <div class="proof-num">50<span>k+</span></div>
+            <div class="proof-label">Happy Athletes</div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-num">4.<span>9</span></div>
+            <div class="proof-label">Avg. Rating</div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-num"><span>100</span>%</div>
+            <div class="proof-label">Quality Promise</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: product card -->
+      <div class="hero-visual">
+        <div class="float-pill float-pill-1">
+          <span class="fp-icon">🔥</span>
+          <div class="fp-body">
+            <div class="fp-val">+180 cal</div>
+            <div class="fp-sub">Today's Burn</div>
+          </div>
+        </div>
+        <div class="float-pill float-pill-2">
+          <span class="fp-icon">⚡</span>
+          <div class="fp-body">
+            <div class="fp-val">4.9 / 5</div>
+            <div class="fp-sub">Customer Rating</div>
+          </div>
+        </div>
+        <div class="float-pill float-pill-3">
+          <span class="fp-icon">🏆</span>
+          <div class="fp-body">
+            <div class="fp-val">#1 Ranked</div>
+            <div class="fp-sub">Fitness Gear 2025</div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <span class="hero-card-emoji">🪢</span>
+          <div class="hero-card-name">Smart Jump Rope Pro</div>
+          <div class="hero-card-price">₹2,499</div>
+          <div class="hero-card-stars">
+            <span class="star-row">★★★★★</span>
+            <span>4.8 (312 reviews)</span>
+          </div>
+          <button class="btn btn-primary" style="width:100%;margin-top:16px;" onclick="addToCartById('mock-1')">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features Strip ────────────────────────────────────── -->
+  <div class="features-strip">
+    <div class="features-grid">
+      <div class="feature-item reveal">
+        <div class="feature-icon-box"><i class="fa-solid fa-truck-fast"></i></div>
+        <div class="feature-text">
+          <strong>Free Shipping</strong>
+          <span>On orders above ₹999</span>
+        </div>
+      </div>
+      <div class="feature-item reveal reveal-delay-1">
+        <div class="feature-icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="feature-text">
+          <strong>Secure Checkout</strong>
+          <span>256-bit SSL encrypted</span>
+        </div>
+      </div>
+      <div class="feature-item reveal reveal-delay-2">
+        <div class="feature-icon-box"><i class="fa-solid fa-medal"></i></div>
+        <div class="feature-text">
+          <strong>Premium Quality</strong>
+          <span>Certified & tested gear</span>
+        </div>
+      </div>
+      <div class="feature-item reveal reveal-delay-3">
+        <div class="feature-icon-box"><i class="fa-solid fa-users"></i></div>
+        <div class="feature-text">
+          <strong>5,000+ Customers</strong>
+          <span>Trust PulseForge daily</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Featured Products ─────────────────────────────────── -->
+  <section style="padding:var(--sp-20) 0" id="featured">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-chip">Featured Products</div>
+        <h2>Top Picks for <span class="accent-text">Peak Performance</span></h2>
+        <p>Handpicked by certified coaches and backed by thousands of verified reviews</p>
+      </div>
+      <div class="products-grid" id="featuredGrid">
+        <!-- Skeleton loaders -->
+        <div class="skel-card"><div class="skeleton skel-img"></div><div class="skel-body"><div class="skeleton skel-line"></div><div class="skeleton skel-line-sm"></div><div class="skeleton skel-btn"></div></div></div>
+        <div class="skel-card"><div class="skeleton skel-img"></div><div class="skel-body"><div class="skeleton skel-line"></div><div class="skeleton skel-line-sm"></div><div class="skeleton skel-btn"></div></div></div>
+        <div class="skel-card"><div class="skeleton skel-img"></div><div class="skel-body"><div class="skeleton skel-line"></div><div class="skeleton skel-line-sm"></div><div class="skeleton skel-btn"></div></div></div>
+        <div class="skel-card"><div class="skeleton skel-img"></div><div class="skel-body"><div class="skeleton skel-line"></div><div class="skeleton skel-line-sm"></div><div class="skeleton skel-btn"></div></div></div>
+      </div>
+      <div style="text-align:center;margin-top:40px" class="reveal">
+        <button class="btn btn-outline btn-lg" onclick="showPage('shop')">
+          Browse All Products <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Collections ───────────────────────────────────────── -->
+  <section style="padding:var(--sp-20) 0;background:var(--clr-surface)">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-chip">Collections</div>
+        <h2>Explore Our <span class="accent-text">Categories</span></h2>
+        <p>Build your dream home gym with gear engineered for every discipline</p>
+      </div>
+      <div class="collections-grid">
+        <div class="coll-card reveal" onclick="filterAndShop('strength-training')">
+          <div class="coll-bg">🏋️</div>
+          <div class="coll-overlay">
+            <div class="coll-name">Strength Training</div>
+            <div class="coll-desc">Dumbbells, barbells & resistance gear</div>
+          </div>
+          <div class="coll-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+        <div class="coll-card reveal reveal-delay-1" onclick="filterAndShop('home-workout')">
+          <div class="coll-bg">🏠</div>
+          <div class="coll-overlay">
+            <div class="coll-name">Home Workout</div>
+            <div class="coll-desc">Compact & portable essentials</div>
+          </div>
+          <div class="coll-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+        <div class="coll-card reveal reveal-delay-2" onclick="filterAndShop('smart-fitness')">
+          <div class="coll-bg">🤖</div>
+          <div class="coll-overlay">
+            <div class="coll-name">Smart Fitness Gear</div>
+            <div class="coll-desc">AI-powered performance tracking</div>
+          </div>
+          <div class="coll-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Product Highlight: Smart Jump Rope ────────────────── -->
+  <section class="highlight-section">
+    <div class="highlight-inner">
+      <div class="highlight-visual reveal-left">
+        <div class="hl-glow"></div>
+        <div class="hl-card">
+          <span class="hl-emoji">🪢</span>
+          <div class="hl-label">Smart Fitness</div>
+          <div class="hl-name">Smart Jump Rope Pro</div>
+          <div class="hl-mini-stats">
+            <div>
+              <div class="hl-stat-num">1200+</div>
+              <div class="hl-stat-lbl">Jumps/min</div>
+            </div>
+            <div>
+              <div class="hl-stat-num">360°</div>
+              <div class="hl-stat-lbl">Bearings</div>
+            </div>
+            <div>
+              <div class="hl-stat-num">4.8★</div>
+              <div class="hl-stat-lbl">Rating</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="highlight-content reveal-right">
+        <div class="section-chip">Product Spotlight</div>
+        <h2 style="margin-top:14px">The <span class="accent-text">Smartest</span><br>Jump Rope Ever Built</h2>
+        <p class="highlight-desc">
+          Meet the Smart Jump Rope Pro — engineered with 360° precision ball bearings, an integrated LCD counter, and seamless Bluetooth connectivity. Every rep, calorie and session tracked automatically so you can focus on pushing harder.
+        </p>
+        <div class="feature-list">
+          <div class="feat-row"><span class="feat-check"><i class="fa-solid fa-display"></i></span> Digital LCD display — jumps, calories, time</div>
+          <div class="feat-row"><span class="feat-check"><i class="fa-solid fa-fire"></i></span> Real-time calorie burn tracking</div>
+          <div class="feat-row"><span class="feat-check"><i class="fa-brands fa-bluetooth"></i></span> Bluetooth 5.0 sync — iOS &amp; Android app</div>
+          <div class="feat-row"><span class="feat-check"><i class="fa-solid fa-arrows-left-right"></i></span> Adjustable cable: 2.5 m – 3.5 m</div>
+          <div class="feat-row"><span class="feat-check"><i class="fa-solid fa-rotate"></i></span> 360° precision ball-bearing system</div>
+        </div>
+        <div class="highlight-price-row">
+          <div class="hl-price">₹2,499</div>
+          <div class="hl-compare">₹3,499</div>
+          <span class="badge badge-green">Save 28%</span>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn btn-primary btn-lg" onclick="addToCartById('mock-1')">
+            <i class="fa-solid fa-bag-shopping"></i> Add to Cart
+          </button>
+          <button class="btn btn-outline btn-lg" onclick="showProductPage('mock-1')">
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Customer Reviews ───────────────────────────────────── -->
+  <section style="padding:var(--sp-20) 0">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-chip">Customer Reviews</div>
+        <h2>What Our <span class="accent-text">Athletes</span> Say</h2>
+        <p>Real feedback from real people who transformed their fitness with PulseForge</p>
+      </div>
+
+      <div class="reviews-meta reveal">
+        <div class="rev-score-big">
+          <div class="rev-number">4.8</div>
+          <div class="rev-stars-big">★★★★★</div>
+          <div class="rev-total">Based on 2,104 reviews</div>
+        </div>
+        <div class="rev-bars">
+          <div class="bar-row"><span class="br-lbl">5★</span><div class="bar-track"><div class="bar-fill" style="width:78%"></div></div><span class="br-pct">78%</span></div>
+          <div class="bar-row"><span class="br-lbl">4★</span><div class="bar-track"><div class="bar-fill" style="width:14%"></div></div><span class="br-pct">14%</span></div>
+          <div class="bar-row"><span class="br-lbl">3★</span><div class="bar-track"><div class="bar-fill" style="width:5%"></div></div><span class="br-pct">5%</span></div>
+          <div class="bar-row"><span class="br-lbl">2★</span><div class="bar-track"><div class="bar-fill" style="width:2%"></div></div><span class="br-pct">2%</span></div>
+          <div class="bar-row"><span class="br-lbl">1★</span><div class="bar-track"><div class="bar-fill" style="width:1%"></div></div><span class="br-pct">1%</span></div>
+        </div>
+        <div class="rev-trust">
+          <div class="rev-trust-item"><i class="fa-solid fa-circle-check"></i> All reviews verified</div>
+          <div class="rev-trust-item"><i class="fa-solid fa-shield-halved"></i> No incentivised reviews</div>
+          <div class="rev-trust-item"><i class="fa-solid fa-users"></i> 50,000+ athletes served</div>
+        </div>
+      </div>
+
+      <div class="reviews-carousel reveal">
+        <div class="reviews-track" id="reviewsTrack"></div>
+        <div class="carousel-nav">
+          <button class="carousel-btn" onclick="moveCarousel(-1)" aria-label="Previous reviews"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="carousel-btn" onclick="moveCarousel(1)"  aria-label="Next reviews"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Newsletter ─────────────────────────────────────────── -->
+  <div class="newsletter-section">
+    <div class="nl-inner reveal">
+      <div class="section-chip">Newsletter</div>
+      <h2 style="margin-top:14px">Get <span class="accent-text">Exclusive</span> Deals</h2>
+      <p>Join 50,000+ fitness enthusiasts. Flash sales, new drops &amp; coaching tips — straight to your inbox.</p>
+      <form class="nl-form" onsubmit="handleNewsletter(event)">
+        <input type="email" id="nlEmail" placeholder="Enter your email…" required aria-label="Email for newsletter">
+        <button type="submit"><i class="fa-solid fa-paper-plane"></i> Subscribe</button>
+      </form>
+      <p class="nl-note">🔒 No spam, ever. Unsubscribe anytime.</p>
+    </div>
+  </div>
+
+</div><!-- /page-home -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     ████  SHOP PAGE
+═══════════════════════════════════════════════════════════ -->
+<div id="page-shop" class="page">
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="section-chip">All Products</div>
+      <h1 style="margin-top:12px">Shop <span class="accent-text">PulseForge</span></h1>
+      <p>Premium smart fitness equipment for every level</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-bottom:var(--sp-20)">
+    <div class="shop-toolbar">
+      <div class="filter-wrap" id="filterWrap">
+        <button class="filter-btn active" data-cat="all"               onclick="setFilter('all',this)">All Products</button>
+        <button class="filter-btn"        data-cat="strength-training" onclick="setFilter('strength-training',this)">Strength Training</button>
+        <button class="filter-btn"        data-cat="home-workout"      onclick="setFilter('home-workout',this)">Home Workout</button>
+        <button class="filter-btn"        data-cat="smart-fitness"     onclick="setFilter('smart-fitness',this)">Smart Fitness</button>
+      </div>
+      <div class="sort-wrap">
+        <span>Sort:</span>
+        <select id="sortSelect" onchange="setSort(this.value)">
+          <option value="default">Featured</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="rating">Top Rated</option>
+          <option value="newest">Newest</option>
+        </select>
+      </div>
+    </div>
+    <p id="shopInfo" style="font-size:.8rem;color:var(--clr-text-3);margin-bottom:var(--sp-5)"></p>
+    <div class="products-grid" id="shopGrid"></div>
+  </div>
+
+</div><!-- /page-shop -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     ████  PRODUCT DETAIL PAGE
+═══════════════════════════════════════════════════════════ -->
+<div id="page-product" class="page">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="#" onclick="return showPage('home')">Home</a>
+      <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+      <a href="#" onclick="return showPage('shop')">Shop</a>
+      <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+      <span id="pdBreadcrumb" style="color:var(--clr-text-2)">Product</span>
+    </nav>
+    <div class="pd-grid" id="pdContent"></div>
+    <div style="padding-bottom:var(--sp-20)">
+      <h3 style="margin-bottom:var(--sp-8)">You Might Also <span class="accent-text">Like</span></h3>
+      <div class="products-grid" id="relatedGrid"></div>
+    </div>
+  </div>
+</div><!-- /page-product -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     ████  ABOUT PAGE
+═══════════════════════════════════════════════════════════ -->
+<div id="page-about" class="page">
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="section-chip">Our Story</div>
+      <h1 style="margin-top:12px">Built for <span class="accent-text">Athletes</span></h1>
+      <p>We believe every serious athlete deserves access to elite-grade fitness technology</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal-left">
+        <span class="about-big-emoji">⚡</span>
+        <div class="about-tagline">"Train Smarter. Perform Stronger."</div>
+        <p style="color:var(--clr-text-3);font-size:.82rem;margin-top:14px;line-height:1.7">
+          Founded 2020 · Bangalore, India<br>
+          50,000+ Products Delivered Nationwide
+        </p>
+      </div>
+      <div class="about-content reveal-right">
+        <div class="section-chip">Who We Are</div>
+        <h2 style="margin-top:14px">The <span class="accent-text">PulseForge</span> Story</h2>
+        <p>PulseForge was born in a Bangalore garage in 2020. Three fitness-obsessed engineers — fed up paying premium gym membership fees and getting nothing but mediocre equipment in return — decided to build something better.</p>
+        <p>Their mission: engineer smart fitness gear that merges intelligent tracking, clinical-grade materials, and thoughtful industrial design. The kind of equipment that used to exist only in elite performance centres — now available for every home gym.</p>
+        <p>Today PulseForge ships nationwide across India. Over 50,000 athletes rely on our gear daily — from first-time home gym builders to national-level competitive CrossFitters. Every single product is designed, tested and warrantied in-house.</p>
+        <button class="btn btn-primary" style="margin-top:24px" onclick="showPage('shop')">
+          <i class="fa-solid fa-bolt"></i> Explore Products
+        </button>
+      </div>
+    </div>
+
+    <!-- Values -->
+    <div style="text-align:center;margin-bottom:40px" class="reveal">
+      <div class="section-chip" style="display:inline-flex">Our Values</div>
+      <h2 style="margin-top:12px">What We <span class="accent-text">Stand For</span></h2>
+    </div>
+    <div class="values-grid">
+      <div class="val-card reveal"><span class="val-icon">🔬</span><h3>Science-Backed</h3><p>Every product developed with input from certified trainers, physiotherapists and materials engineers.</p></div>
+      <div class="val-card reveal reveal-delay-1"><span class="val-icon">♻️</span><h3>Sustainable</h3><p>Eco-conscious packaging, recycled materials where possible — because the planet is where we all train.</p></div>
+      <div class="val-card reveal reveal-delay-2"><span class="val-icon">💎</span><h3>Premium Quality</h3><p>Commercial-gym grade materials at home-friendly prices. Zero compromise on build or durability.</p></div>
+    </div>
+
+    <!-- Team -->
+    <div style="padding-bottom:var(--sp-20)">
+      <div style="text-align:center;margin-bottom:40px" class="reveal">
+        <div class="section-chip" style="display:inline-flex">The Team</div>
+        <h2 style="margin-top:12px">Meet the <span class="accent-text">Founders</span></h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card reveal"><div class="team-avatar">👨‍💻</div><div class="team-name">Arjun Mehta</div><div class="team-role">Co-Founder &amp; CEO</div><div class="team-bio">Ex-ISRO hardware engineer turned fitness tech founder. 10+ yrs in embedded product development.</div></div>
+        <div class="team-card reveal reveal-delay-1"><div class="team-avatar">👩‍🎨</div><div class="team-name">Priya Sharma</div><div class="team-role">Co-Founder &amp; Design Lead</div><div class="team-bio">IIT Bombay industrial designer. Believes that great products are felt before they're understood.</div></div>
+        <div class="team-card reveal reveal-delay-2"><div class="team-avatar">🏋️</div><div class="team-name">Rohan Verma</div><div class="team-role">Co-Founder &amp; Sports Science</div><div class="team-bio">Certified S&amp;C coach. National-level athlete. Designed PulseForge's rigorous product test protocols.</div></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page-about -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     ████  CONTACT PAGE
+═══════════════════════════════════════════════════════════ -->
+<div id="page-contact" class="page">
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="section-chip">Get In Touch</div>
+      <h1 style="margin-top:12px">We're Here to <span class="accent-text">Help</span></h1>
+      <p>Questions, orders or partnerships — our team responds within 24 hours</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="contact-grid">
+      <!-- Info -->
+      <div class="contact-info reveal">
+        <h3>Contact <span class="accent-text">Information</span></h3>
+        <p>Have a question about your order or a product? We're real humans who care about your experience.</p>
+        <div class="contact-items">
+          <div class="contact-item"><div class="ci-icon"><i class="fa-solid fa-envelope"></i></div><div class="ci-text"><strong>Email</strong><span>support@pulseforge.in</span></div></div>
+          <div class="contact-item"><div class="ci-icon"><i class="fa-solid fa-phone"></i></div><div class="ci-text"><strong>WhatsApp &amp; Phone</strong><span>+91 98765 43210 (Mon–Sat, 9am–6pm)</span></div></div>
+          <div class="contact-item"><div class="ci-icon"><i class="fa-solid fa-location-dot"></i></div><div class="ci-text"><strong>Head Office</strong><span>Koramangala, Bangalore, Karnataka 560034</span></div></div>
+          <div class="contact-item"><div class="ci-icon"><i class="fa-solid fa-clock"></i></div><div class="ci-text"><strong>Support Hours</strong><span>Monday–Saturday: 9:00 AM – 6:00 PM IST</span></div></div>
+        </div>
+        <div style="margin-top:28px">
+          <h4 style="font-size:.85rem;color:var(--clr-text-2);margin-bottom:12px">Follow Us</h4>
+          <div style="display:flex;gap:9px">
+            <a href="#" class="f-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="f-social-btn" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="f-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="f-social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="cf-card reveal reveal-delay-1">
+        <h3>Send a <span class="accent-text">Message</span></h3>
+        <div id="contactFormWrap">
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="cf-name">Full Name *</label>
+              <input class="form-input" id="cf-name" type="text" placeholder="Your name">
+              <span class="form-error" id="cf-name-err">Please enter your name</span>
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="cf-email">Email Address *</label>
+              <input class="form-input" id="cf-email" type="email" placeholder="you@example.com">
+              <span class="form-error" id="cf-email-err">Please enter a valid email</span>
+            </div>
+          </div>
+          <div class="form-field" style="margin-top:16px">
+            <label class="form-label" for="cf-subject">Subject *</label>
+            <input class="form-input" id="cf-subject" type="text" placeholder="How can we help?">
+            <span class="form-error" id="cf-subject-err">Please enter a subject</span>
+          </div>
+          <div class="form-field" style="margin-top:16px;margin-bottom:24px">
+            <label class="form-label" for="cf-message">Message *</label>
+            <textarea class="form-input" id="cf-message" placeholder="Tell us more…" rows="5"></textarea>
+            <span class="form-error" id="cf-message-err">Please enter your message (min 10 characters)</span>
+          </div>
+          <button class="form-submit" id="cfSubmitBtn" onclick="handleContact()">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </button>
+        </div>
+        <div class="cf-success" id="cfSuccess">
+          <span class="cf-success-icon">✅</span>
+          <h3>Message Sent!</h3>
+          <p>Thanks for reaching out. Our team will reply within 24 hours.</p>
+          <button class="btn btn-outline" style="margin-top:20px" onclick="resetContactForm()">Send Another</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div style="padding-bottom:var(--sp-20)">
+      <div style="text-align:center;margin-bottom:40px" class="reveal">
+        <div class="section-chip" style="display:inline-flex">FAQ</div>
+        <h2 style="margin-top:12px">Common <span class="accent-text">Questions</span></h2>
+      </div>
+      <div style="max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:10px" id="faqContainer"></div>
+    </div>
+  </div>
+
+</div><!-- /page-contact -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER (shown on all pages)
+═══════════════════════════════════════════════════════════ -->
+<footer id="main-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="f-logo">
+        <div class="f-logo-mark"><i class="fa-solid fa-bolt"></i></div>
+        <span>Pulse<span>Forge</span></span>
+      </div>
+      <p class="f-desc">Premium smart fitness equipment for the modern athlete. Train smarter, perform stronger, recover faster.</p>
+      <div class="f-social">
+        <a href="#" class="f-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="f-social-btn" aria-label="X/Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="f-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="f-social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" class="f-social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#" onclick="return showPage('home')">Home</a></li>
+        <li><a href="#" onclick="return showPage('shop')">Shop All</a></li>
+        <li><a href="#" onclick="filterAndShop('strength-training')">Strength Training</a></li>
+        <li><a href="#" onclick="filterAndShop('smart-fitness')">Smart Fitness</a></li>
+        <li><a href="#" onclick="return showPage('about')">About Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Policies</h4>
+      <ul>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Refund Policy</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:support@pulseforge.in"><i class="fa-solid fa-envelope" style="width:16px;color:var(--clr-accent)"></i> support@pulseforge.in</a></li>
+        <li><a href="tel:+919876543210"><i class="fa-solid fa-phone" style="width:16px;color:var(--clr-accent)"></i> +91 98765 43210</a></li>
+        <li><a href="#"><i class="fa-solid fa-location-dot" style="width:16px;color:var(--clr-accent)"></i> Bangalore, India</a></li>
+      </ul>
+      <div style="margin-top:20px;padding:14px;background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:var(--r-sm)">
+        <div style="font-size:.72rem;color:var(--clr-text-3);margin-bottom:6px">Mon–Sat, 9am–6pm IST</div>
+        <div style="font-size:.8rem;font-weight:600;color:var(--clr-accent);display:flex;align-items:center;gap:7px">
+          <span style="width:7px;height:7px;background:var(--clr-accent);border-radius:50%;animation:blink-dot 1.8s ease infinite;display:inline-block"></span>
+          Support Online
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 PulseForge. All rights reserved. Made with ❤️ in India.</span>
+    <div class="payment-logos">
+      <span style="font-size:.72rem;color:var(--clr-text-3);margin-right:6px">Payments:</span>
+      <span class="pay-badge">UPI</span>
+      <span class="pay-badge">VISA</span>
+      <span class="pay-badge">MC</span>
+      <span class="pay-badge">COD</span>
+      <span class="pay-badge">EMI</span>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     CART DRAWER
+═══════════════════════════════════════════════════════════ -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()" role="dialog" aria-modal="true" aria-label="Shopping cart"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <div class="cart-title">
+      <i class="fa-solid fa-bag-shopping" style="color:var(--clr-accent)"></i>
+      Your Cart
+      <span class="cart-meta" id="cartMeta">(0 items)</span>
+    </div>
+    <button class="cart-x" onclick="toggleCart()" aria-label="Close cart">
+      <i class="fa-solid fa-xmark"></i> Close
+    </button>
+  </div>
+
+  <div class="cart-body" id="cartBody">
+    <div class="cart-empty-state" id="cartEmpty">
+      <div class="cart-empty-icon">🛒</div>
+      <h3>Your cart is empty</h3>
+      <p>Add products to get started</p>
+      <button class="btn btn-primary" style="margin-top:16px" onclick="showPage('shop');toggleCart()">
+        Browse Shop
+      </button>
+    </div>
+  </div>
+
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-totals">
+      <div class="ct-row"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+      <div class="ct-row"><span>Shipping</span><span id="cartShipping" style="color:var(--clr-accent)">Free</span></div>
+    </div>
+    <div class="ct-total">
+      <span>Total</span>
+      <span id="cartTotal">₹0</span>
+    </div>
+    <button class="cart-checkout" onclick="handleCheckout()">
+      <i class="fa-solid fa-lock"></i> Proceed to Checkout
+    </button>
+    <button class="cart-continue" onclick="toggleCart()">Continue Shopping</button>
+  </div>
+</aside>
+
+<!-- Toast container -->
+<div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
+
+<!-- App JavaScript -->
+<script src="js/app.js"></script>
+</body>
+</html>
